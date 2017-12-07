@@ -1,4 +1,4 @@
-#--- Day 6: Signals and Noise ---
+# --- Day 6: Signals and Noise ---
 
 Something is jamming your communications with Santa. Fortunately, your signal is only partially jammed, and protocol in situations like this is to switch to a simple repetition code to get the message through.
 
@@ -29,7 +29,7 @@ Given the recording in your puzzle input, what is the error-corrected version of
 
 Your puzzle answer was zcreqgiv.
 
-##--- Part Two ---
+## --- Part Two ---
 
 Of course, that would be the message - if you hadn't agreed to use a modified repetition code instead.
 
