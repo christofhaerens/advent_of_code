@@ -7,21 +7,21 @@ The Document indicates that you should start at the given coordinates (where you
 There's no time to follow such ridiculous instructions on foot, though, so you take a moment and work out the destination. Given that you can only walk on the street grid of the city, how far is the shortest path to the destination?
 
 For example:
-
-    Following R2, L3 leaves you 2 blocks East and 3 blocks North, or 5 blocks away.
-    R2, R2, R2 leaves you 2 blocks due South of your starting position, which is 2 blocks away.
-    R5, L5, R5, R3 leaves you 12 blocks away.
+  * Following R2, L3 leaves you 2 blocks East and 3 blocks North, or 5 blocks away.
+  * R2, R2, R2 leaves you 2 blocks due South of your starting position, which is 2 blocks away.
+  * R5, L5, R5, R3 leaves you 12 blocks away. 
 
 How many blocks away is Easter Bunny HQ?
 
-### Your puzzle answer was 271.
+*Your puzzle answer was 271.*
 
 ## --- Part Two ---
 
 Then, you notice the instructions continue on the back of the Recruiting Document. Easter Bunny HQ is actually at the first location you visit twice.
 
-    For example, if your instructions are R8, R4, R4, R8, the first location you visit twice is 4 blocks away, due East.
+For example
+  * if your instructions are R8, R4, R4, R8, the first location you visit twice is 4 blocks away, due East.
 
 How many blocks away is the first location you visit twice?
 
-### Your puzzle answer was 153.
+*Your puzzle answer was 153.*
