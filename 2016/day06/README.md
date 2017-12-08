@@ -27,7 +27,7 @@ The most common character in the first column is e; in the second, a; in the thi
 
 Given the recording in your puzzle input, what is the error-corrected version of the message being sent?
 
-Your puzzle answer was zcreqgiv.
+**Your puzzle answer was zcreqgiv.**
 
 ## --- Part Two ---
 
@@ -39,4 +39,4 @@ In the above example, the least common character in the first column is a; in th
 
 Given the recording in your puzzle input and this new decoding methodology, what is the original message that Santa is trying to send?
 
-Your puzzle answer was pljvorrk.
+**Your puzzle answer was pljvorrk.**
