@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# --- Day 8: I Heard You Like Registers ---
+# --- Day 9: Stream Processing ---
 
 import re
 
