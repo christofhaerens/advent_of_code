@@ -21,12 +21,6 @@ def part_1(data, l):
     return cl[0] * cl[1]
 
 
-def dense(lv):
-    h = 0
-    for i in range(len(lv)):
-        h ^= h
-    return h
-
 
 def part_2(data, l):
     index = 0
