@@ -2,8 +2,6 @@
 
 # --- Day 11: Corporate Policy ---
 
-import re
-
 letters = [x for x in 'abcdefghijklmnopqrstuvwxyz']
 invalid_letters = [x for x in 'ilo']
 
