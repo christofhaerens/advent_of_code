@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# --- Day 11: Hex Ed ---
+
 location = {"n": (0, 2),
             "ne": (1, 1),
             "se": (1, -1),
