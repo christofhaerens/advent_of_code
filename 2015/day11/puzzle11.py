@@ -66,7 +66,7 @@ def main():
     data = fh.read().strip()
     # data = 'zx'
     fh.close()
-    # assert part1 = 675   part2 = 1424
+    # assert part1 = hepxxyzz   part2 = heqaabcc
     print("part1 = %s\npart2 = %s" % part_1_2(data))
 
 
