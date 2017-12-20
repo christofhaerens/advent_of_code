@@ -75,7 +75,7 @@ def main():
     fh = open('./input', 'r')
     data = [line.strip('\n') for line in fh]
     fh.close()
-    # assert part1 = 258   part2 = 841 (too high)
+    # assert part1 = 258   part2 = 707
     particles = read_data(data)
     print("part1 = %d" % part_1(particles[:]))
     particles = read_data(data)
