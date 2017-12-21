@@ -33,6 +33,12 @@ def part_1(particles):
     return acc.index(min(acc))
 
 
+def part_1a(particles):
+    # this only works if 1 particle is slowest
+    acc = [sum([abs(a) for a in p[2]]) for p in particles]
+    return acc.index(min(acc))
+
+
 def part_2(particles):
     stop = False
     # loop till slowest is closest to zero
@@ -55,12 +61,12 @@ def part_2(particles):
                 np.append(p)
         particles = np
         # search for slowest part
-        for p in particles:
-            if stop:
-                us = sum([abs(a) for a in [p[0][0], p[1][0], p[2][0]]])
-                ss = sum([p[0][0], p[1][0], p[2][0]])
-                if us != abs(ss):
-                    stop = False
+        # for p in particles:
+        #     if stop:
+        #         us = sum([abs(a) for a in [p[0][0], p[1][0], p[2][0]]])
+        #         ss = sum([p[0][0], p[1][0], p[2][0]])
+        #         if us != abs(ss):
+        #             stop = False
         # check for closest
         if stop:
             acc = [sum([abs(a) for a in p[2]]) for p in particles]
@@ -68,19 +74,24 @@ def part_2(particles):
             mhd = [sum([abs(a) for a in p[0]]) for p in particles]
             if i != mhd.index(min(mhd)):
                 stop = False
+        print(len(particles))
     return len(particles)
 
 
 def main():
-    fh = open('./input', 'r')
+    fh = open('./input2', 'r')
     data = [line.strip('\n') for line in fh]
     fh.close()
     # assert part1 = 258   part2 = 707
     particles = read_data(data)
-    print("part1 = %d" % part_1(particles[:]))
+    print("part1 = %d" % part_1a(particles[:]))
     particles = read_data(data)
+    # part_2 code works for this input but is not safe yet if 2 or more paricles
+    # have the same acceleration. To be safe all accelerations most be compared to all distances
+    #  -> arrange particle numbers based on accelerations from slow to fast
+    #  -> arrange particle numbers based on mhd from nearby to far
+    # if both are equal the we are sure no mer collidingpixels will occur
     print("part2 = %d" % part_2(particles[:]))
-    # print("part2 = %d" % part_2(data))
 
 
 if __name__ == '__main__':
