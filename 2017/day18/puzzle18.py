@@ -109,17 +109,12 @@ def part_2(data):
 
 
 def main():
-    # fh = open('./test_input', 'r')
     fh = open('./input', 'r')
     data = [line.strip().split() for line in fh]
     fh.close()
-    # print(data)
-    # assert part1 = 1187   part2 =
-    # higher 127
-    # lower 18900
+    # assert part1 = 1187   part2 = 5969
     print("part1 = %d" % part_1(data))
     print("part2 = %d" % part_2(data))
-    # print("part2 = %d" % part_2(data))
 
 
 if __name__ == '__main__':
