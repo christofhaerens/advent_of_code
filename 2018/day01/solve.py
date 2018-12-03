@@ -1,32 +1,22 @@
 #!/usr/bin/python3
 
 import re
+from collections import defaultdict
 
 day = "--- Day 1: Chronal Calibration ---"
 
 
 def solve(start, data):
-    som = start
-    a1 = 0
-    seen = {}
-    twice = False
-    loop = 0
-    while twice is False:
-        loop += 1
-        for p in data:
-            m = re.match(r'^([-+])(\d+)', p)
-            if m.group(1) == '-':
-                som -= int(m.group(2))
-            else:
-                som += int(m.group(2))
-            if twice is False and som in seen.keys():
-                twice = som
-            else:
-                seen[som] = 1
-        if loop == 1:
-            a1 = som
-
-    return [str(a1), str(twice)]
+    f_list = [int(d) for d in data]
+    final_freq = start + sum(f_list)
+    freq = start
+    previous = defaultdict(int)
+    while True:
+        for f in f_list:
+            freq += f
+            previous[freq] += 1
+            if previous[freq] == 2:
+                return [str(final_freq), str(freq)]
 
 
 def print_answers(a):
