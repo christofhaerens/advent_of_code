@@ -1,32 +1,20 @@
 #!/usr/bin/python3
 
 import re
+from collections import Counter
 
 day = "--- Day 2: Inventory Management System ---"
 
 
 def solve(data):
-    twee = 0
-    drie = 0
-    for w in data:
-        prev_c = ''
-        word = [x for x in w]
-        word.sort()
-        twee_c = False
-        drie_c = False
-        for c in word:
-            if c != prev_c:
-                aantal = word.count(c)
-                if aantal == 2:
-                    if twee_c is False:
-                        twee += 1
-                        twee_c = True
-                elif aantal == 3:
-                    if drie_c is False:
-                        drie += 1
-                        drie_c = True
-            prev_c = c
-    return [str(twee * drie), solve2(data)]
+    box = {2: 0, 3: 0}
+    for box_id in data:
+        char_count = Counter(box_id)
+        counts = char_count.values()
+        for i in [2, 3]:
+            if i in counts:
+                box[i] += 1
+    return [str(box[2] * box[3]), solve2(data)]
 
 
 def difference(w1, w2):
