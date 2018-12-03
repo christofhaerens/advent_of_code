@@ -18,26 +18,27 @@ def solve(data):
 
 
 def difference(w1, w2):
+    """
+    Given 2 words, compare them and return an array with the index of the chars that differ
+    """
     chars = []
     for idx, val in enumerate(w1):
         if w2[idx] != val:
             chars.append(idx)
-    return len(chars), chars[0]
+    return chars
 
 
 def solve2(data):
-    data2 = data.copy()
     l = len(data)
+    # loop until we have found 2 box ids that have 1 char different
     for idx, val in enumerate(data):
-        i = idx + 1
-        while i < l:
-            d, char_idx = difference(val, data2[i])
-            if d == 1:
-                break
-            i += 1
-        if d == 1:
-            break
-    return data[i][0:char_idx] + data[i][(char_idx + 1):]
+        for i in range(idx + 1, l):
+            different_chars = difference(val, data[i])
+            if len(different_chars) == 1:
+                # return the box_id without the different char
+                pos = different_chars[0]
+                return val[0:pos] + val[(pos + 1):]
+    raise RuntimeError('Error: no boxids found with 1 char different')
 
 
 def print_answers(a):
