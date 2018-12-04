@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 
 import re
-import datetime
 from collections import defaultdict, Counter
 
-# date_time_str = 'Jun 28 2018  7:40AM'
-# date_time_obj = datetime.datetime.strptime(date_time_str, '%b %d %Y %I:%M%p')
 
 day = "--- Day 4: Repose Record ---"
 
