@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 
-import re
-from collections import defaultdict, Counter
-
-
 day = "--- Day 5: Alchemical Reduction ---"
 
 
