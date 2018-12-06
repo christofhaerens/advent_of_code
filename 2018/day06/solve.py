@@ -2,6 +2,7 @@
 
 import re
 from collections import defaultdict, Counter, OrderedDict
+from operator import itemgetter, attrgetter
 
 
 day = "--- Day 6: Chronal Coordinates ---"
@@ -12,70 +13,38 @@ def manhattan(p1, p2):
 
 
 def solve(data):
-    x = {}
-    y = {}
-    xs = []
-    ys = []
-    # let's give each point a number
-    ps = range(0, len(data))
-    for p, d in enumerate(data):
-        x[p], y[p] = [int(z) for z in d.split(', ')]
-        xs.append(x[p])
-        ys.append(y[p])
-    xmax = max(xs)
-    ymax = max(ys)
-    xs = range(1, xmax + 1)
-    ys = range(1, ymax + 1)
-    # init the positions
-    pos = {}  # positions
-    pmap = {}  # pos map
-    d_map = {}  # distance map
-    for i in xs:
-        pos[i] = {}
-        pmap[i] = {}
-        d_map[i] = {}
-        for j in ys:
-            pos[i][j] = {}
-            pmap[i][j] = False
-            d_map[i][j] = 0
-    # now calculate manhattan for all each point
-    for i in xs:
-        for j in ys:
-            for p in ps:
-                ppos = (x[p], y[p])
-                distance = manhattan(ppos, (i, j))
-                # part1
-                if distance in pos[i][j]:
-                    pos[i][j][distance].append(p)
-                else:
-                    pos[i][j][distance] = [p]
-                # part2
-                d_map[i][j] += distance
-    # for each point now check the distances we gathered
-    area = defaultdict(int)
-    excluded = []
-    d_area = 0
-    for i in xs:
-        for j in ys:
-            # check the shortest distance
-            d = min(pos[i][j].keys())
-            l = len(pos[i][j][d])
-            if l == 1:
-                p = pos[i][j][d][0]
-                pmap[i][j] = str(p)
-                area[p] += 1
-                if i == 1 or i == xmax or j == 1 or j == ymax:
-                    excluded.append(p)
-            else:
-                pmap[i][j] = '.'
+    points = []  # to store the points in (x, y) coord format
+    points = [tuple(map(int, d.split(', '))) for d in data]
+    # get the min and max
+    xmin = min([p[0] for p in points])
+    xmax = max([p[0] for p in points])
+    ymin = min([p[1] for p in points])
+    ymax = max([p[1] for p in points])
+    # build the map
+    area_per_idx = defaultdict(int)
+    excluded = {}
+    region = 0
+    for x in range(xmin, xmax + 1):
+        for y in range(ymin, ymax + 1):
+            # calculate distances to all points. We want only the shortes distance for part1
+            # if only 1 point has the shortest, we mark it with the idx of the point, otherwise it's overlapping and we ignore
+            distances = [manhattan(p, (x, y)) for p in points]
+            shortest = min(distances)
+            indexes = [idx for idx, d in enumerate(distances) if d == shortest]
+            if len(indexes) == 1:
+                area_per_idx[indexes[0]] += 1
+                # if it is on the edge of our map then it will be infinite and we must exclude it for the area
+                if x in (xmin, xmax) or y in (ymin, ymax):
+                    excluded[indexes[0]] = 1
             # part2
-            if d_map[i][j] < 10000:
-                d_area += 1
-    for p in excluded:
-        area[p] = 0
-    w = Counter(area)
+            if sum(distances) < 10000:
+                region += 1
+    # our map is complte, now find the largest area with the excluded
+    for idx in excluded:
+        area_per_idx[idx] = 0
+    w = Counter(area_per_idx)
     a1 = w.most_common(1)[0][1]
-    return [a1, d_area]
+    return [a1, region]
 
 
 def print_answers(a):
