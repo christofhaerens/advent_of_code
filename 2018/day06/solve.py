@@ -13,7 +13,7 @@ def manhattan(p1, p2):
 
 
 def solve(data):
-    points = []  # to store the points in (x, y) coord format
+    # to store the points in (x, y) coord format
     points = [tuple(map(int, d.split(', '))) for d in data]
     # get the min and max
     xmin = min([p[0] for p in points])
@@ -43,8 +43,7 @@ def solve(data):
     for idx in excluded:
         area_per_idx[idx] = 0
     w = Counter(area_per_idx)
-    a1 = w.most_common(1)[0][1]
-    return [a1, region]
+    return [w.most_common(1)[0][1], region]
 
 
 def print_answers(a):
