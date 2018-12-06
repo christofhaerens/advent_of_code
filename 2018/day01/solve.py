@@ -16,13 +16,13 @@ def solve(start, data):
             freq += f
             previous[freq] += 1
             if previous[freq] == 2:
-                return [str(final_freq), str(freq)]
+                return [final_freq, freq]
 
 
 def print_answers(a):
     print("\n%s" % day)
-    print("part1 = %s" % a[0])
-    print("part2 = %s" % a[1])
+    print("part1 = %r" % a[0])
+    print("part2 = %r" % a[1])
     print()
 
 

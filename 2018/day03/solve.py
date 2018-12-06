@@ -30,14 +30,14 @@ def solve(data):
     # check if a cid has only claimed singe positions
     for cid in cids:
         if cid not in dup_cids.keys():
-            return [str(dupes), str(cid)]
+            return [dupes, cid]
     raise RuntimeError('No claim ID found that does not overlap wit another')
 
 
 def print_answers(a):
     print("\n%s" % day)
-    print("part1 = %s" % a[0])
-    print("part2 = %s" % a[1])
+    print("part1 = %r" % a[0])
+    print("part2 = %r" % a[1])
     print()
 
 

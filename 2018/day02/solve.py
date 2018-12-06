@@ -14,7 +14,7 @@ def solve(data):
         for i in [2, 3]:
             if i in counts:
                 box[i] += 1
-    return [str(box[2] * box[3]), solve2(data)]
+    return [box[2] * box[3], solve2(data)]
 
 
 def difference(w1, w2):

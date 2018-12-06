@@ -53,13 +53,13 @@ def solve(data):
     w = Counter(gid_min)
     gid_min, c = w.most_common(1)[0]
     gid2, min2 = [int(x) for x in gid_min.split('_')]
-    return [str(gid1 * min_most_asleep), str(gid2 * min2)]
+    return [gid1 * min_most_asleep, gid2 * min2]
 
 
 def print_answers(a):
     print("\n%s" % day)
-    print("part1 = %s" % a[0])
-    print("part2 = %s" % a[1])
+    print("part1 = %r" % a[0])
+    print("part2 = %r" % a[1])
     print()
 
 

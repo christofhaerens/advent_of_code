@@ -27,13 +27,13 @@ def solve(data):
         polymer = polymer.replace(c.upper(), '')
         polymer = collapse(polymer)
         a2.append(len(polymer))
-    return [str(a1), str(min(a2))]
+    return [a1, min(a2)]
 
 
 def print_answers(a):
     print("\n%s" % day)
-    print("part1 = %s" % a[0])
-    print("part2 = %s" % a[1])
+    print("part1 = %r" % a[0])
+    print("part2 = %r" % a[1])
     print()
 
 
