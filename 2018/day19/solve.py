@@ -24,9 +24,12 @@ OPERATIONS = {  # r = register, i = instruction
     'eqrr': lambda r, i: 1 if r[i[1]] == r[i[2]] else 0,
 }
 
+# WARNING WARNING !!
+# this solution only works with my input, because I dint forsee other scenarios for #ip=x and finding r1 (which could be r3 in another input)
+# I have added a second real input to optimize the code so it will run other inputs too (if I have time ..)
 
-# the part1 solution, but if you know the part2 solution we can get part1 faster
-def part1(data, ip=0):
+
+def part1(data, ip=0):  # the part1 solution, but if you know the part2 solution we can get part1 faster
     ip_idx = int(data[0][4:])
     program = []
     r = [0] * 6
@@ -93,6 +96,7 @@ def print_answers(a):
 
 def main():
     # fh = open('./input_test.txt', 'r')
+    # fh = open('./input2.txt', 'r')
     fh = open('./input.txt', 'r')
     data = [line.strip() for line in fh]
     fh.close()
