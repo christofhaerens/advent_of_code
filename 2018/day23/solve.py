@@ -67,7 +67,6 @@ def solve(data):
                     r = 0 if gap == 1 else gap // 2
                     ourbot = Bot(x, y, z, r)
                     bots_in_range = sum([1 for b in bots if ourbot.bot_in_r(b)])
-                    # print(ourbot, bots_in_range)
                     if bots_in_range > best:
                         best = bots_in_range
                         bestbot = ourbot
@@ -102,5 +101,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# not 498
