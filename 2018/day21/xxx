@@ -1,0 +1,36 @@
+
+
+
+
+18: r5 + 1 -> r3
+r3 * 256 -> r3
+r3 > r4  -> r3
+  r3 + r2  -> r2 -> jump to 22 (otherwise 23: seti 25 4 2 -> jump to 26: setr 5 3 4)
+22: r2 + 1 -> r2 -> to jump over 23
+r5 + 1 -> r5
+jump to 18
+
+
+r1 = 123                         (b    111 1011 )
+1: r1 = r1 & 456 -> 72    ( 456 = b 1 1100 1000 )
+if r1 == 72:
+  jump 5: 
+  r1 = 0
+  r4 =  r1 | 65536  ( 65536 = b 1 0000 0000 0000 0000 )
+
+else:
+  jump 4: seti 0 0 2
+  r2 = 0
+  jump 1:
+
+24: r5 ++
+r3 = r5 + 1
+r3 *= 256
+if r3 > r4:
+  r4 = r5
+  jump 3:
+else
+  jump 24:
+
+3: r2 = r2 + r1
+
