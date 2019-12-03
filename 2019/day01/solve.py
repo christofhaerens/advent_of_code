@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-import re
-from collections import defaultdict
-
 day = "--- Day 1 - 2019 ---"
 
 
