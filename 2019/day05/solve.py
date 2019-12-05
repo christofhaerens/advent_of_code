@@ -5,25 +5,27 @@ from collections import defaultdict
 
 day = "--- Day 5 - 2019 ---"
 
+
 def intcode(data, user_input, debug=False):
     f = {
-      1: lambda x, y: x + y,
-      2: lambda x, y: x * y,
-      7: lambda x, y: 1 if x < y else 0,
-      8: lambda x, y: 1 if x == y else 0,
+        1: lambda x, y: x + y,
+        2: lambda x, y: x * y,
+        7: lambda x, y: 1 if x < y else 0,
+        8: lambda x, y: 1 if x == y else 0,
     }
     pos = 0
     run = True
     last_output = 0
     while run:
         instruction = str(data[pos])
-        for i in range(5-len(instruction)):
+        for i in range(5 - len(instruction)):
             instruction = '0' + instruction
         opcode = int(''.join(instruction[-2:]))
         mode1 = instruction[2]
         mode2 = instruction[1]
-        mode3 = instruction[0]
-        if debug: print(pos, opcode, data[pos:pos + 8])
+        # mode3 = instruction[0]
+        if debug:
+            print(pos, opcode, data[pos:pos + 8])
         if opcode == 99:
             run = False
         elif last_output != 0:
@@ -34,7 +36,8 @@ def intcode(data, user_input, debug=False):
             v1 = data[p1] if mode1 == '0' else p1
             v2 = data[p2] if mode2 == '0' else p2
             data[p3] = f[opcode](v1, v2)
-            if debug: print("   ", v1, v2, data[p3])
+            if debug:
+                print("   ", v1, v2, data[p3])
             pos += 4
         elif opcode == 3:  # input
             p1 = data[pos + 1]
@@ -56,7 +59,8 @@ def intcode(data, user_input, debug=False):
                 pos = data[p2] if mode2 == '0' else p2
             else:
                 pos += 3
-            if debug: print("   p1 p2 v1 pos ", p1, p2, v1, pos)
+            if debug:
+                print("   p1 p2 v1 pos ", p1, p2, v1, pos)
         elif opcode == 6:  # jump if false (zero)
             p1, p2 = data[pos + 1:pos + 3]
             v1 = data[p1] if mode1 == '0' else p1
@@ -64,7 +68,8 @@ def intcode(data, user_input, debug=False):
                 pos = data[p2] if mode2 == '0' else p2
             else:
                 pos += 3
-            if debug: print("   ", v1, p2, pos)
+            if debug:
+                print("   ", v1, p2, pos)
         else:
             print('Error')
             run = False
