@@ -14,7 +14,7 @@ def do(data, part=1):
         parent_planet[op] = p
     planets = orbiting_planets.keys()
     orbiters = parent_planet.keys()
-    com = list(set(planets)-set(orbiters))[0]  # com is not orbiting
+    com = list(set(planets) - set(orbiters))[0]  # com is not orbiting
     if part == 1:
         count = 0
         for planet in orbiters:
@@ -25,9 +25,8 @@ def do(data, part=1):
     # part 2
     you, san = 'YOU', 'SAN'
     # find shortest path from you to san
-    routes = []  # keep track of our routes
     planets_passed = defaultdict(int)
-    routes.append([parent_planet[you]])  # start with our parent planet
+    routes = [[parent_planet[you]]]  # start with our parent planet as first route
     while True:
         newroutes = []
         for route in routes:
