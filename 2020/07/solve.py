@@ -4,7 +4,7 @@
 import re
 from collections import defaultdict
 
-day = "--- Day 7 - 2020 ---"
+day = "--- Day 8 - 2020 ---"
 
 
 def read_rules(d):
@@ -30,19 +30,16 @@ def part1(d):
     # lookup bag that hold our bag directly
     can_hold = defaultdict(int)
     expand_bags = ['shiny gold']
-    while True:
-        expanded = False
+    while len(expand_bags) > 0:
+        new_expand_bags = []
         for name in expand_bags:
             for bag_name in bags.keys():
                 if bag_name in expand_bags:
                     continue
                 if name in [other[1] for other in bags[bag_name]]:
                     can_hold[bag_name] += 1
-                    expanded = True
-                    expand_bags.append(bag_name)
-        if not expanded:
-            break
-
+                    new_expand_bags.append(bag_name)
+        expand_bags = new_expand_bags
     return len(can_hold.keys())
 
 
