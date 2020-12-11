@@ -12,8 +12,8 @@ FREE, FLOOR, OCCUPIED = "L", ".", "#"
 def part1(d):
     xmax = len(d[0])
     ymax = len(d)
-    after = [['.' for _ in range(xmax)] for _ in range(ymax)]
     while True:
+        after = [['.' for _ in range(xmax)] for _ in range(ymax)]
         changed = 0
         for y, row in enumerate(d):
             for x, seat in enumerate(row):
@@ -42,14 +42,13 @@ def part1(d):
                         c += 1
             return c
         d = after
-        after = [['.' for _ in range(xmax)] for _ in range(ymax)]
 
 
 def part2(d):
     xmax = len(d[0])
     ymax = len(d)
-    after = [['.' for _ in range(xmax)] for _ in range(ymax)]
     while True:
+        after = [['.' for _ in range(xmax)] for _ in range(ymax)]
         changed = 0
         for y, row in enumerate(d):
             for x, seat in enumerate(row):
@@ -83,7 +82,6 @@ def part2(d):
                         c += 1
             return c
         d = after
-        after = [['.' for _ in range(xmax)] for _ in range(ymax)]
 
 
 def solve1(data):
