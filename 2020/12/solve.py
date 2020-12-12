@@ -5,7 +5,7 @@
 # from collections import Counter
 # from collections import defaultdict
 
-day = "--- Day 11 - 2020 ---"
+day = "--- Day 12 - 2020 ---"
 
 
 def part1(d):
