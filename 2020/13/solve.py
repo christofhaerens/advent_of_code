@@ -24,7 +24,6 @@ def part1(d):
             r.append(b - (depart % b))
     shortest = min(r)
     bus = busses[r.index(shortest)]
-    print(bus, shortest)
     return bus * shortest
 
 
