@@ -2,15 +2,10 @@
 # import itertools
 # import functools
 # import re
-import math
 # from collections import Counter
 # from collections import defaultdict
 
 day = "--- Day 13 - 2020 ---"
-
-
-def lcm(a, b):
-    return abs(a * b) // math.gcd(a, b)
 
 
 def part1(d):
