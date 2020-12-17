@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import time
 import itertools
 # import functools
 # import re
@@ -62,12 +63,15 @@ def solve2(data):
 
 
 def solve(data):
+    print(f"\n{day}\n")
+    t = time.perf_counter()
     a1 = solve1(data.copy())
-    print("\n%s" % day)
-    print("part1 = %r" % a1)
+    print("process_time = %.3f" % (time.perf_counter() - t))
+    print("part1 = %r\n" % (a1))
+    t = time.perf_counter()
     a2 = solve2(data.copy())
-    print("part2 = %r" % a2)
-    print()
+    print("process_time = %.3f" % (time.perf_counter() - t))
+    print("part2 = %r\n" % (a2))
 
 
 def main():
