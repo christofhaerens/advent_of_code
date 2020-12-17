@@ -35,12 +35,12 @@ class Pocket(object):
         # If a cube is inactive but exactly 3 of its neighbors are active, the cube becomes active. Otherwise, the cube remains inactive.
         newgrid = defaultdict(int)
         # considering the rules we only need the check the neighbours of the actives
-        checked = set()
+        not_checked = defaultdict(lambda: True)
         active_points = tuple(self.grid.keys())
         for point in active_points:
             for n in self.get_neighbours(point):
-                if n not in checked:
-                    checked.add(n)
+                if not_checked[n]:
+                    not_checked[n] = False
                     c = self.neighbour_count(n)
                     if (self.grid[n] == 1 and c in [2, 3]) or (self.grid[n] == 0 and c == 3):
                         newgrid[n] = 1
