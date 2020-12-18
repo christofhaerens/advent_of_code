@@ -12,37 +12,24 @@ day = "--- Day 18 - 2020 ---"
 OP = {'+': lambda x, y: x + y, '*': lambda x, y: x * y}
 
 
-def calc(d):
+def calc1(d):
     stack = d[:]
     stack.reverse()
     while len(stack) > 1:
         *stack, y, op, x = stack
-        stack.append(OP[op](int(x), int(y)))
+        stack.append(OP[op](x, y))
     return stack[0]
 
 
 def calc2(d):
-    stack_len = len(d)
-    stack = d[:] + [""]  # append extra element for the i+1 to work
-    new_stack = []
-    i = 0
-    # do all sums first
-    while i < stack_len:
-        if stack[i + 1] == "+":
-            new_stack.append(int(stack[i]) + int(stack[i + 2]))
-            i += 2
-        else:
-            if stack[i] == "+":
-                x = new_stack.pop()
-                new_stack.append(x + int(stack[i + 1]))
-                i += 1
-            elif stack[i] != '*':
-                new_stack.append(int(stack[i]))
-        i += 1
+    stack = d[:]
+    while "+" in stack:
+        i = stack.index('+')
+        stack = stack[:i - 1] + [stack[i - 1] + stack[i + 1]] + stack[i + 2:]
     a = 1
-    # only products left in new_stack
-    for x in new_stack:
-        a *= x
+    for x in stack:
+        if x != "*":
+            a *= x
     return a
 
 
@@ -50,11 +37,11 @@ def sanitize_line(d):
     line = []
     for x in d.replace("(", " ( ").replace(")", " ) ").split(" "):
         if x != "":
-            line.append(x)
+            line.append(x if x in "+*()" else int(x))
     return(line)
 
 
-def solve1(data):
+def homework(data, f):
     a = 0
     for expression in data:
         level = 0
@@ -63,31 +50,21 @@ def solve1(data):
             if c == "(":
                 level += 1
             elif c == ")":
-                stack[level - 1].append(calc(stack[level]))
+                stack[level - 1].append(f(stack[level]))
                 stack[level] = []
                 level -= 1
             else:
                 stack[level].append(c)
-        a += calc(stack[level])
+        a += f(stack[level])
     return a
+
+
+def solve1(data):
+    return homework(data, calc1)
 
 
 def solve2(data):
-    a = 0
-    for expression in data:
-        level = 0
-        stack = defaultdict(list)
-        for i, c in enumerate(expression):
-            if c == "(":
-                level += 1
-            elif c == ")":
-                stack[level - 1].append(calc2(stack[level]))
-                stack[level] = []
-                level -= 1
-            else:
-                stack[level].append(c)
-        a += calc2(stack[level])
-    return a
+    return homework(data, calc2)
 
 
 def solve(data):
