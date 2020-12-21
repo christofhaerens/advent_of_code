@@ -32,12 +32,15 @@ def solve1(data):
         for a in allergens:
             if a not in map:  # only search if this isnt mapped yet
                 intersect = None
-                for idx, a_list in allergens_idx.items():
-                    if a in a_list:
+                for idx, a_list in allergens_idx.items():  # check each food
+                    if a in a_list:  # and see if allergen is in it
+                        # make an intersection of all ingredients that have this allergen
                         if intersect is None:
+                            # to initialize the intersect, add ingredients from first match without the ingredients we already mapped
                             intersect = ingredients_idx[idx].difference(mapped_ingredients)
                         else:
                             intersect = intersect.intersection(ingredients_idx[idx])
+                        # when we have narrowed down the interset to 1 ingredient, we have a match
                         if len(intersect) == 1:
                             mapped_ingredients.update(intersect)
                             map[a] = intersect.pop()
@@ -46,8 +49,10 @@ def solve1(data):
         if found == 0:
             break
     c = 0
+    # for each food, count how many ingredients are allergen free
     for i in ingredients_idx.values():
         c += len(i.difference(mapped_ingredients))
+    # create list of ingredients that have an allergen
     dangerous = [map[a] for a in sorted(map.keys())]
     return c, ",".join(dangerous)
 
