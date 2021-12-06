@@ -21,10 +21,8 @@ def map_lines(data):
                 ver_hor_points.append((x1, y1))
             if (x1, y1) == (x2, y2):
                 break
-            if x1 != x2:
-                x1 += dx
-            if y1 != y2:
-                y1 += dy
+            x1 += dx
+            y1 += dy
 
     ver_hor_points = Counter(ver_hor_points)
     all_points = Counter(all_points)
